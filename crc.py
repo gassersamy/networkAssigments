@@ -31,16 +31,20 @@ def to_int(message):
         return int(message[2:],2)
     return int(message,10)
 
-user_note = "Kindly enter the message you wanna transmit\n"
-user_note += "ex(1): 0b11001010\n"
-user_note += "ex(2): 0xCA\n"
-user_note += "ex(3): 202\n"
-
-message = input(user_note)
-message = to_int(message)
-
+message = 0
+while message < POLY_NOMIAL:
+    user_note = "Kindly enter the message you wanna transmit\n"
+    user_note += "ex(1): 0b11001010\n"
+    user_note += "ex(2): 0xCA\n"
+    user_note += "ex(3): 202\n"
+    user_note += "**Message must be greater than generator poly nomial ("+bin(POLY_NOMIAL)+")\n"
+    message = input(user_note)
+    message = to_int(message)
+ 
 transmited = generator(message)
 print("=======================================")
+print("Base message is: "+bin(message))
+print("Polynomial is: "+bin(POLY_NOMIAL))
 print("Transmited message will be: "+bin(transmited))
 print("Verifier says: "+ verifier(transmited))
 
